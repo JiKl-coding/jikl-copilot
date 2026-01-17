@@ -144,15 +144,46 @@ Konkrétní názvy se mohou lišit podle verze nástrojů, ale typicky:
 
 Pozn.: co přesně je dostupné (licence/enterprise) záleží na konfiguraci organizace.
 
-### Definování chování agenta pomocí .md
-Nejběžnější praxe:
-- `docs/agent.md` nebo `copilot-instructions.md`
-- obsah: **coding standards, workflow, testování, definice hotovo, omezení**
+### Jak vytvořit vlastního agenta tak, aby byl vidět v UI (VS Code)
 
-Příklad toho, co má smysl v instrukcích:
-- „používej `npm test` po změnách“
-- „nepřidávej závislosti bez schválení“
-- „dodržuj existující styl“
+VS Code umí „project agents“ načíst z repozitáře, ale musí být v přesné struktuře:
+
+```text
+.github/
+  agents/
+    muj-agent.agent.md
+  skills/
+    muj-skill/
+      SKILL.md
+docs/
+  COPILOT_BASICS.md
+  AGENTS.md
+  SKILLS.md
+```
+
+1) Vytvoř soubor `.github/agents/muj-agent.agent.md`
+
+Minimální šablona:
+
+```chatagent
+---
+name: 'Můj agent'
+description: 'Krátký popis (k čemu slouží).'
+model: GPT-5.2
+---
+
+Sem patří instrukce: cíle, co dělat/nedělat, workflow, testy, styl.
+```
+
+Poznámky:
+- `model:` je volitelné. Pokud chceš, aby agent vždy použil model vybraný v Copilot UI, řádek `model:` vynech.
+- Po přidání/úpravě agenta často pomůže **Developer: Reload Window**.
+- V chatu pak agenta vybereš v headeru (Agent/Persona picker).
+
+### Repo instrukce vs. agent (důležité rozlišení)
+
+- **Project agent** = soubor v `.github/agents/*.agent.md` (volíš v UI).
+- **Repo instrukce** = obecná pravidla pro práci v repu (často `copilot-instructions.md` apod.). Ta mohou být užitečná, ale nejsou to „UI-pickable“ agenti.
 
 <a id="skills"></a>
 ## 6) 🛠️ Skills: co to je a kdy to použít
@@ -163,10 +194,28 @@ Na co se hodí:
 - standardizované úlohy v týmu (šablony, formáty, opakované kroky),
 - rychlé přepínání „jak pracovat“ (např. TDD skill vs. refactor skill).
 
-Jak je definovat (obecně):
-- popsat vstupy/výstupy,
-- jasná pravidla (co nedělat),
-- kroky ověření.
+### Jak vytvořit skill tak, aby ho VS Code našel
+
+Project skills se dávají do `.github/skills/<skill-name>/SKILL.md`.
+
+Minimální šablona `SKILL.md`:
+
+```markdown
+---
+name: muj-skill
+description: Stručně co skill dělá.
+---
+
+## Instructions
+- Kdy skill použít
+- Jaký má být výstup
+- Jak ověřit, že je hotovo
+```
+
+Poznámky:
+- Skills jsou ve VS Code (zatím) často **preview** feature.
+- Obvykle je potřeba zapnout nastavení `chat.useAgentSkills`.
+- Skill se uplatní hlavně v Agent módu (agent může použít skill jako „checklist / playbook“).
 
 <a id="multi-agent-workflow"></a>
 ## 7) 🔁 Workflow pro více agentů (handoff + paralelizace)
