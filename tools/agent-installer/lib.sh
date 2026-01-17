@@ -103,7 +103,7 @@ clone_source_sparse() {
 			|| git fetch -q --filter=blob:none --depth 1 origin "refs/heads/$ref" \
 			|| git fetch -q --depth 1 origin "refs/heads/$ref" \
 			|| die "Failed to fetch ref '$ref' from $url"
-		git sparse-checkout init --cone
+		git sparse-checkout init --no-cone
 	)
 }
 
@@ -115,7 +115,7 @@ set_sparse_and_checkout() {
 	shift 2
 	(
 		cd "$repo"
-		git sparse-checkout set -- "$@"
+		git sparse-checkout set --no-cone -- "$@"
 		git checkout -q FETCH_HEAD
 	)
 }
