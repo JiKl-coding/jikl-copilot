@@ -159,7 +159,7 @@ skills_for_agent() {
 		BEGIN { inAgents=0; depth=0; inTarget=0; inSkills=0 }
 		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; depth=1; next }
 		inAgents {
-			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:/, m)) {
+			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:[[:space:]]*\{/, m)) {
 				inTarget = (m[1] == agent) ? 1 : 0
 				inSkills = 0
 			}
