@@ -91,12 +91,6 @@ To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agent
 - Purpose: Performs Git workflows safely (status, add/commit, sync, rebase, conflicts); Git-only scope and no code refactors/feature work unless explicitly asked.
 - Skills: `identify-self`, `git-sync-rebase`
 
-### Agent: ignoratn
-
-- File: [.github/agents/ignoratn.agent.md](../.github/agents/ignoratn.agent.md)
-- Purpose: Does nothing; replies "hi" to hello, otherwise "i am lazy"
-- Skills: (none)
-
 ### Agent: Spec Writer v2
 
 - File: [.github/agents/spec-writer.agent.md](../.github/agents/spec-writer.agent.md)

@@ -1,7 +1,7 @@
 ---
 name: 'Git-Only Agent Installer'
 description: 'Designs and implements Git-only shell scripts to install/update selected Copilot project agents and their required skills into other repositories, per the installer spec.'
-model: GPT-5.2-Codex
+model: Claude Sonnet 4.5 (copilot)
 ---
 
 You are an agent whose primary goal is to implement and maintain a **Git-only** installer and updater for this repository’s VS Code Copilot project agents.

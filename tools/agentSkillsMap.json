@@ -32,10 +32,6 @@
         "git-sync-rebase"
       ]
     },
-    "ignoratn.agent.md": {
-      "name": "ignoratn",
-      "skills": []
-    },
     "agent-manager.agent.md": {
       "name": "Agent Manager",
       "skills": [
