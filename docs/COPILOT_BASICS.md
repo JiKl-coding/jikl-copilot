@@ -7,6 +7,11 @@
 > - Vyber model: **mini** na rutinu ⚡, **max** na složitost 🧩
 > - Používej **SDD/spec**: definuj „hotovo“ ✅, pak teprve implementuj
 
+> 📚 Související dokumenty
+> - Index dokumentace: [docs/README.md](README.md)
+> - Agenti: [docs/AGENTS.md](AGENTS.md)
+> - Skills: [docs/SKILLS.md](SKILLS.md)
+
 ## 📌 Obsah
 
 - [1) Mentální model](#mental-model)
@@ -115,7 +120,7 @@ Plan mód je ideální na to, aby Copilot:
 - navrhl rizika,
 - přidal akceptační kritéria a testy.
 
-### SDD smyčka (Mermaid)
+### SDD smyčka
 ```mermaid
 flowchart TD
   A[Spec: goal + AC + edge cases] --> B[Plan: kroky + ověření]
@@ -137,11 +142,11 @@ Konkrétní názvy se mohou lišit podle verze nástrojů, ale typicky:
 - **Cloud agent**: část práce probíhá na vzdálené infrastruktuře (škálování, izolace, konzistence prostředí).
 - **Codex agent** (často se tím myslí „coding agent“): agent zaměřený na kódové změny + spouštění build/test.
 
-Pozn.: co přesně je dostupné ve vašem prostředí (licence/enterprise) záleží na konfiguraci organizace.
+Pozn.: co přesně je dostupné (licence/enterprise) záleží na konfiguraci organizace.
 
 ### Definování chování agenta pomocí .md
 Nejběžnější praxe:
-- `docs/agent.md` nebo `copilot-instructions.md` (název závisí na týmu/nástrojích)
+- `docs/agent.md` nebo `copilot-instructions.md`
 - obsah: **coding standards, workflow, testování, definice hotovo, omezení**
 
 Příklad toho, co má smysl v instrukcích:
@@ -271,7 +276,7 @@ Doporučení:
 ---
 
 <a id="prompt-templates"></a>
-## 🧷 Rychlé „šablony promptů“ (kopírovatelné)
+## 🧷 Rychlé „šablony promptů“
 
 - **Spec**: „Napiš krátkou specifikaci: goal, non-goals, AC (5 bodů), edge cases, test plan.“
 - **Plan**: „Navrhni plán v 5–7 krocích s ověřením po každém kroku.“
