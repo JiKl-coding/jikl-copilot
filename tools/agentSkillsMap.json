@@ -4,6 +4,7 @@
     "spec-writer.agent.md": {
       "name": "Spec Writer v2",
       "skills": [
+        "identify-self",
         "requirements-extractor",
         "ac-quality-check",
         "risk-review",
@@ -12,20 +13,23 @@
         "mcp-integration"
       ]
     },
+    "documentation-writer.agent.md": {
+      "name": "Documentation Writer",
+      "skills": [
+        "identify-self"
+      ]
+    },
     "git-steward.agent.md": {
       "name": "Git Steward",
       "skills": [
+        "identify-self",
         "git-sync-rebase"
       ]
     },
-    "agent-registry.agent.md": {
-      "name": "Agent Registry Steward",
-      "skills": []
-    },
-    "ignorant.agent.md": {
-      "name": "Ignorant",
+    "agent-manager.agent.md": {
+      "name": "Agent Manager",
       "skills": [
-        "ignorant"
+        "identify-self"
       ]
     }
   }

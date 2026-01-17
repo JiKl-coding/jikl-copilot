@@ -209,6 +209,10 @@ Notes:
 - You typically need to enable `chat.useAgentSkills`.
 - Skills are most useful in Agent mode (as a structured playbook/checklist).
 
+Important:
+- Project agents (`.github/agents/*.agent.md`) and skills (`.github/skills/<skill>/SKILL.md`) are discovered separately.
+- VS Code agent front matter does not support a per-agent `skills:` field; keep any “which skills this agent uses” guidance inside the agent instructions, and use `tools/agentSkillsMap.json` only as a repo-maintained catalog/index.
+
 <a id="multi-agent-workflow"></a>
 ## 7) 🔁 Multi-agent workflow (handoff + parallelization)
 

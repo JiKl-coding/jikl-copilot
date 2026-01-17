@@ -218,6 +218,10 @@ Poznámky:
 - Obvykle je potřeba zapnout nastavení `chat.useAgentSkills`.
 - Skill se uplatní hlavně v Agent módu (agent může použít skill jako „checklist / playbook“).
 
+Důležité:
+- Project agenti (`.github/agents/*.agent.md`) a skills (`.github/skills/<skill>/SKILL.md`) se ve VS Code objevují nezávisle.
+- Front matter project agenta nepodporuje per-agent pole `skills:`; pokud chceš řídit „jaké skills má agent používat“, napiš to přímo do instrukcí agenta a `tools/agentSkillsMap.json` ber jen jako repo katalog/index.
+
 <a id="multi-agent-workflow"></a>
 ## 7) 🔁 Workflow pro více agentů (handoff + paralelizace)
 

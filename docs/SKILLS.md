@@ -9,14 +9,14 @@ Related docs:
 
 ## Included skills
 
-Ask the **Agent Registry Steward** to regenerate the auto-generated skills list below after any changes under `.github/skills/`.
+Ask the **Agent Manager** to regenerate the auto-generated skills list below after any changes under `.github/skills/`.
 
 <!-- SKILLS:BEGIN -->
 (Auto-generated. Edit skill files under `.github/skills/<skill>/SKILL.md`.)
 
 - `ac-quality-check` — Improve acceptance criteria so they are testable, unambiguous, and complete. (source: [.github/skills/ac-quality-check/SKILL.md](../.github/skills/ac-quality-check/SKILL.md))
 - `git-sync-rebase` — Safely sync a branch with origin/main using fetch + rebase, with an optional "accept current" conflict policy. (source: [.github/skills/git-sync-rebase/SKILL.md](../.github/skills/git-sync-rebase/SKILL.md))
-- `ignorant` — Donutí odpovědět na cokoliv jedinou větou: "to mě nezajímá". (source: [.github/skills/ignorant/SKILL.md](../.github/skills/ignorant/SKILL.md))
+- `identify-self` — Provide a short identity/self-description and usage guidance when the user asks “who are you / what can you do / help”. (source: [.github/skills/identify-self/SKILL.md](../.github/skills/identify-self/SKILL.md))
 - `mcp-integration` — Add an MCP integration section (tools, auth, error handling, observability, tests) to an existing spec. (source: [.github/skills/mcp-integration/SKILL.md](../.github/skills/mcp-integration/SKILL.md))
 - `requirements-extractor` — Extract MUST/SHOULD/MAY requirements, constraints, flows, and open questions from long epic/PRD text (PDF/TXT export). (source: [.github/skills/requirements-extractor/SKILL.md](../.github/skills/requirements-extractor/SKILL.md))
 - `risk-review` — Identify edge cases, security/privacy issues, operational risks, and delivery risks in a spec. (source: [.github/skills/risk-review/SKILL.md](../.github/skills/risk-review/SKILL.md))
