@@ -62,7 +62,7 @@ flowchart LR
 
 ## 📦 Git-only agent installer (experimental)
 
-This repo includes a Git-only installer/updater for importing selected Copilot project agents (and required skills) into other repositories.
+This repo includes a Git-only installer for importing selected Copilot project agents (and required skills) into other repositories.
 
 - Spec: [docs/specs/2026-01-17--git-only-agent-installer.md](docs/specs/2026-01-17--git-only-agent-installer.md)
 - Usage: [tools/agent-installer/README.md](tools/agent-installer/README.md)

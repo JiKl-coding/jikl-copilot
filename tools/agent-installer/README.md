@@ -1,6 +1,6 @@
 # Git-only agent installer
 
-This folder contains a Git-only installer/updater for importing Copilot project agents and their required skills into another repository.
+This folder contains a Git-only installer for importing Copilot project agents and their required skills into another repository.
 
 Constraints:
 - Git + POSIX-ish shell only (Git Bash / WSL / macOS / Linux)
@@ -24,15 +24,7 @@ Options:
 - `--ref <tag|branch|commit>`
 - `--source <url>` (use this for corporate mirrors)
 
-## Update (from a target repo)
-
-```bash
-tmp_dir="$(mktemp -d)" && \
-  git clone --depth 1 --filter=blob:none --sparse https://github.com/JiKl-coding/jikl-copilot.git "$tmp_dir/jikl-copilot" && \
-  git -C "$tmp_dir/jikl-copilot" sparse-checkout set tools/agent-installer && \
-  bash "$tmp_dir/jikl-copilot/tools/agent-installer/update.sh" && \
-  rm -rf "$tmp_dir"
-```
+If a selected agent or skill already exists in the target repo, the installer will prompt you per item with options to overwrite, skip, or rename.
 
 ## What it writes
 
