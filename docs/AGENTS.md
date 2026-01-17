@@ -94,7 +94,7 @@ To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agent
 ### Agent: ignoratn
 
 - File: [.github/agents/ignoratn.agent.md](../.github/agents/ignoratn.agent.md)
-- Purpose: Does nothing and always replies with exactly: i am lazy
+- Purpose: Does nothing; replies "hi" to hello, otherwise "i am lazy"
 - Skills: (none)
 
 ### Agent: Spec Writer v2
