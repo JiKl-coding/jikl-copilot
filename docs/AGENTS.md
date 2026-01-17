@@ -79,6 +79,12 @@ To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agent
 - Purpose: Writes documentation only (READMEs, guides, API docs, runbooks) from provided context/specs; does not refactor/implement code or run commands unless explicitly asked.
 - Skills: `identify-self`
 
+### Agent: Git-Only Agent Installer
+
+- File: [.github/agents/git-only-agent-installer.agent.md](../.github/agents/git-only-agent-installer.agent.md)
+- Purpose: Designs and implements Git-only shell scripts to install/update selected Copilot project agents and their required skills into other repositories, per the installer spec.
+- Skills: `identify-self`
+
 ### Agent: Git Steward
 
 - File: [.github/agents/git-steward.agent.md](../.github/agents/git-steward.agent.md)

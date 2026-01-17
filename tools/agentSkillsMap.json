@@ -19,6 +19,12 @@
         "identify-self"
       ]
     },
+    "git-only-agent-installer.agent.md": {
+      "name": "Git-Only Agent Installer",
+      "skills": [
+        "identify-self"
+      ]
+    },
     "git-steward.agent.md": {
       "name": "Git Steward",
       "skills": [

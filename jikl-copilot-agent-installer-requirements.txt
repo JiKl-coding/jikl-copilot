@@ -1,0 +1,50 @@
+Project Brief: Git-Only Agent Bootstrap & Update Installer
+
+1) What it is
+We need a lightweight, Git-only “installer” that allows developers to import selected VS Code Copilot project agents (and their required skills) from the public repository `JiKl-coding/jikl-copilot` into any target repository. The installer must work in locked-down corporate environments where package runners (e.g., npx) are prohibited, and should rely only on Git and standard shell capabilities.
+
+2) What it must do
+
+A) Install (download selected agents + their skills)
+- Provide a single command that can be executed from the root of a target repository without requiring any pre-existing files in that repository.
+- Present an interactive selection menu where the user can choose one or more agents to install (multi-select).
+- For each selected agent, automatically determine and include all required skills using the canonical mapping stored in `tools/agentSkillsMap.json` in the source repository.
+- Copy the selected agents into the target repository under:
+  - `.github/agents/<agentName>/`
+- Copy all required skills into the target repository under:
+  - `.github/skills/<skillName>/`
+- Avoid unnecessary downloads by using a Git-only approach (e.g., sparse checkout / shallow clone) to fetch only required content.
+- Handle existing target files safely:
+  - If an agent/skill already exists, the installer must prompt the user for an action (e.g., overwrite, skip, or install under an alternative name).
+- Output a clear summary at the end:
+  - Which agents were installed
+  - Which skills were installed
+  - Any items skipped or overwritten
+
+B) Update (manual, selective agent updates via a separate command)
+- Provide a separate command dedicated to updates (not the same as install).
+- Present an interactive multi-select menu listing currently installed/managed agents in the target repository.
+- Allow the user to pick which agents to update; do not automatically update everything.
+- For each selected agent, update its files to the chosen source version (default: pinned version stored in local metadata; optional: allow updating to a specified ref/tag).
+- Ensure skill dependencies remain consistent:
+  - If updated agents require new skills, those skills must be installed/updated accordingly.
+  - If updated agents no longer require certain skills, do not remove them automatically; instead, report them as “unused candidates” in the summary.
+- Update must be safe in the presence of local modifications:
+  - If local changes are detected, prompt the user to choose (skip, overwrite, or write updated content side-by-side as `.new`).
+- Maintain local metadata (a lock/manifest file) that records:
+  - Source repository + ref/tag/commit
+  - Installed agents and their versions
+  - Installed skills and their versions
+  - Timestamp of last install/update
+
+Non-functional requirements
+- Compatibility: Must run in typical corporate setups (Windows Git Bash / WSL / Linux / macOS) without requiring Node, Python, or external package runners.
+- Security/Transparency: Must clearly show what it will change before applying destructive actions (overwrite), and should support a “dry-run” mode if feasible.
+- Idempotency: Re-running install/update should be predictable and should not create duplicate agent/skill directories unintentionally.
+- Documentation: Provide short usage instructions for both commands (install and update) and a brief explanation of the dependency mapping behavior.
+
+Acceptance Criteria (high-level)
+- A user can install one or multiple agents (chosen via menu) into a fresh target repository with a single Git-only command.
+- Skills are automatically included based on `agentSkillsMap.json`.
+- A user can later run a separate update command, select a subset of agents, and update only those agents (plus any newly required skills).
+- Existing files are never overwritten without an explicit user choice.

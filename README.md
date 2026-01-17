@@ -59,3 +59,10 @@ flowchart LR
 - Open [docs/README.md](docs/README.md) and confirm links work.
 - In VS Code, confirm agents are discoverable from `.github/agents/`.
 - If skills are enabled, confirm the list matches [docs/SKILLS.md](docs/SKILLS.md).
+
+## 📦 Git-only agent installer (experimental)
+
+This repo includes a Git-only installer/updater for importing selected Copilot project agents (and required skills) into other repositories.
+
+- Spec: [docs/specs/2026-01-17--git-only-agent-installer.md](docs/specs/2026-01-17--git-only-agent-installer.md)
+- Usage: [tools/agent-installer/README.md](tools/agent-installer/README.md)
