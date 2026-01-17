@@ -3,6 +3,7 @@
 VS Code discovers project skills from `.github/skills/<skill-name>/SKILL.md`.
 
 Related docs:
+
 - Agents index: see [docs/AGENTS.md](AGENTS.md)
 - Copilot basics: see [docs/COPILOT_BASICS_CZ.md](COPILOT_BASICS_CZ.md) (or [EN](COPILOT_BASICS_EN.md))
 
@@ -15,6 +16,7 @@ Related docs:
 - `test-plan` — unit/integration/e2e test strategy (source: [.github/skills/test-plan/SKILL.md](../.github/skills/test-plan/SKILL.md))
 - `rollout-migration` — rollout + migration + rollback planning (source: [.github/skills/rollout-migration/SKILL.md](../.github/skills/rollout-migration/SKILL.md))
 - `mcp-integration` — MCP integration addendum for specs (source: [.github/skills/mcp-integration/SKILL.md](../.github/skills/mcp-integration/SKILL.md))
+- `git-sync-rebase` — fetch + rebase onto origin/main with optional "accept current" conflict policy (source: [.github/skills/git-sync-rebase/SKILL.md](../.github/skills/git-sync-rebase/SKILL.md))
 
 ## Note
 

@@ -3,6 +3,7 @@
 VS Code discovers project agents from `.github/agents/*.agent.md`.
 
 Related docs:
+
 - Agents index: this page
 - Skills index: see [docs/SKILLS.md](SKILLS.md)
 - Copilot basics: see [docs/COPILOT_BASICS_CZ.md](COPILOT_BASICS_CZ.md) (or [EN](COPILOT_BASICS_EN.md))
@@ -19,6 +20,18 @@ Related docs:
 - "Write an SDD spec for adding CSV export. Constraint: no API changes. Done when: handles 10k rows and has tests."
 - "Write an SDD spec for refactoring module X. Non-goals: no new features. Include risks and migration plan."
 - "Write an SDD spec for integrating service Y; include a sequence diagram and retry/error-handling policy."
+
+## Git Steward
+
+- File: [.github/agents/git-steward.agent.md](../.github/agents/git-steward.agent.md)
+- Purpose: perform Git workflows in the terminal (status, add/commit, fetch, rebase onto `origin/main`, conflict resolution).
+- Safety: will not push or do destructive operations unless you explicitly ask.
+
+### Prompt examples (Git)
+
+- "Add and commit current changes with message 'WIP: tidy up', then rebase onto origin/main. If conflicts happen, resolve using accept current."
+- "Sync my branch with origin/main via rebase. No pushing."
+- "Abort the ongoing rebase and restore my working tree."
 
 ## Skills
 
