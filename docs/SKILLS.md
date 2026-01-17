@@ -4,7 +4,7 @@ VS Code discovers project skills from `.github/skills/<skill-name>/SKILL.md`.
 
 Related docs:
 - Agents index: see [docs/AGENTS.md](AGENTS.md)
-- Copilot basics: see [docs/COPILOT_BASICS.md](COPILOT_BASICS.md)
+- Copilot basics: see [docs/COPILOT_BASICS_CZ.md](COPILOT_BASICS_CZ.md) (or [EN](COPILOT_BASICS_EN.md))
 
 ## Included skills
 

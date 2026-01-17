@@ -1,12 +1,14 @@
 # Docs index
 
-- [Copilot basics](COPILOT_BASICS.md)
+- [Copilot basics (EN)](COPILOT_BASICS_EN.md)
+- [Základy Copilota (CZ)](COPILOT_BASICS_CZ.md)
 - [Project agents](AGENTS.md)
 - [Agent skills](SKILLS.md)
 
 ## Copilot Chat mentions
 
-	#file:docs/COPILOT_BASICS.md
+	#file:docs/COPILOT_BASICS_EN.md
+	#file:docs/COPILOT_BASICS_CZ.md
 	#file:docs/AGENTS.md
 	#file:docs/SKILLS.md
 

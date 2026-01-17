@@ -156,7 +156,8 @@ VS Code umí „project agents“ načíst z repozitáře, ale musí být v pře
     muj-skill/
       SKILL.md
 docs/
-  COPILOT_BASICS.md
+  COPILOT_BASICS_EN.md
+  COPILOT_BASICS_CZ.md
   AGENTS.md
   SKILLS.md
 ```

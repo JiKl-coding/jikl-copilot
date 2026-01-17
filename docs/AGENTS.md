@@ -5,7 +5,7 @@ VS Code discovers project agents from `.github/agents/*.agent.md`.
 Related docs:
 - Agents index: this page
 - Skills index: see [docs/SKILLS.md](SKILLS.md)
-- Copilot basics: see [docs/COPILOT_BASICS.md](COPILOT_BASICS.md)
+- Copilot basics: see [docs/COPILOT_BASICS_CZ.md](COPILOT_BASICS_CZ.md) (or [EN](COPILOT_BASICS_EN.md))
 
 ## Spec Writer v2
 
