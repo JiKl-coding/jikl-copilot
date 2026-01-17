@@ -133,13 +133,19 @@ resolve_source_sha() {
 list_agents_from_mapping() {
 	local mapping_file="$1"
 	awk '
-		BEGIN { inAgents=0; key=""; name="" }
-		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; next }
-		inAgents && /^[[:space:]]*\}/ { inAgents=0 }
+		BEGIN { inAgents=0; depth=0; key=""; name="" }
+		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; depth=1; next }
 		inAgents {
 			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:[[:space:]]*\{/, m)) { key=m[1]; name="" }
 			if (key != "" && match($0, /"name"[[:space:]]*:[[:space:]]*"([^"]+)"/, n)) { name=n[1] }
 			if (key != "" && name != "") { printf "%s\t%s\n", key, name; key=""; name="" }
+
+			# Track brace depth to know when agents object ends
+			line=$0
+			opens=gsub(/\{/, "{", line)
+			closes=gsub(/\}/, "}", line)
+			depth += opens - closes
+			if (depth <= 0) { inAgents=0; exit }
 		}
 	' "$mapping_file" | sort
 }
@@ -150,9 +156,8 @@ skills_for_agent() {
 	local mapping_file="$1"
 	local agent_file="$2"
 	awk -v agent="$agent_file" '
-		BEGIN { inAgents=0; inTarget=0; inSkills=0 }
-		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; next }
-		inAgents && /^[[:space:]]*\}/ { inAgents=0 }
+		BEGIN { inAgents=0; depth=0; inTarget=0; inSkills=0 }
+		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; depth=1; next }
 		inAgents {
 			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:/, m)) {
 				inTarget = (m[1] == agent) ? 1 : 0
@@ -163,6 +168,12 @@ skills_for_agent() {
 				if ($0 ~ /\]/) { inSkills=0; next }
 				if (match($0, /"([^"]+)"/, s)) { print s[1] }
 			}
+
+			line=$0
+			opens=gsub(/\{/, "{", line)
+			closes=gsub(/\}/, "}", line)
+			depth += opens - closes
+			if (depth <= 0) { inAgents=0; exit }
 		}
 	' "$mapping_file" | sed '/^$/d'
 }
