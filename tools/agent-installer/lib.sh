@@ -137,7 +137,7 @@ list_agents_from_mapping() {
 		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; next }
 		inAgents && /^[[:space:]]*\}/ { inAgents=0 }
 		inAgents {
-			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:/, m)) { key=m[1]; name="" }
+			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:[[:space:]]*\{/, m)) { key=m[1]; name="" }
 			if (key != "" && match($0, /"name"[[:space:]]*:[[:space:]]*"([^"]+)"/, n)) { name=n[1] }
 			if (key != "" && name != "") { printf "%s\t%s\n", key, name; key=""; name="" }
 		}
