@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "agents": {
+    "spec-writer.agent.md": {
+      "name": "Spec Writer v2",
+      "skills": [
+        "requirements-extractor",
+        "ac-quality-check",
+        "risk-review",
+        "test-plan",
+        "rollout-migration",
+        "mcp-integration"
+      ]
+    },
+    "git-steward.agent.md": {
+      "name": "Git Steward",
+      "skills": [
+        "git-sync-rebase"
+      ]
+    },
+    "agent-registry.agent.md": {
+      "name": "Agent Registry Steward",
+      "skills": []
+    },
+    "ignorant.agent.md": {
+      "name": "Ignorant",
+      "skills": [
+        "ignorant"
+      ]
+    }
+  }
+}
