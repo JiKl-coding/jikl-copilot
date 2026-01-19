@@ -11,31 +11,45 @@
         "test-plan",
         "rollout-migration",
         "mcp-integration"
-      ]
+      ],
+      "knowledge-base": []
     },
     "documentation-writer.agent.md": {
       "name": "Documentation Writer",
       "skills": [
         "identify-self"
-      ]
+      ],
+      "knowledge-base": []
     },
     "git-only-agent-installer.agent.md": {
       "name": "Git-Only Agent Installer",
       "skills": [
         "identify-self"
-      ]
+      ],
+      "knowledge-base": []
     },
     "git-steward.agent.md": {
       "name": "Git Steward",
       "skills": [
         "identify-self",
         "git-sync-rebase"
-      ]
+      ],
+      "knowledge-base": []
     },
     "agent-manager.agent.md": {
       "name": "Agent Manager",
       "skills": [
         "identify-self"
+      ],
+      "knowledge-base": []
+    },
+    "testAgent.agent.md": {
+      "name": "testAgent",
+      "skills": [
+        "identify-self"
+      ],
+      "knowledge-base": [
+        "knowledge-base/testbase.md"
       ]
     }
   }

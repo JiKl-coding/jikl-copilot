@@ -9,6 +9,7 @@ In scope, it maintains these artifacts:
 - `.github/agents/*.agent.md`
 - `.github/skills/<skill>/SKILL.md`
 - `tools/agentSkillsMap.json` (when it already exists)
+- `knowledge-base/` (shared knowledge base documents)
 
 In this exact repository, it also maintains the human-friendly docs indexes:
 
@@ -24,6 +25,7 @@ Use Agent Manager if you want to:
 - Create/update/delete an agent file under `.github/agents/`
 - Create/update/delete a skill under `.github/skills/`
 - Keep `tools/agentSkillsMap.json` in sync with agents/skills
+- Assign concrete knowledge-base documents to an agent (when explicitly instructed)
 - Regenerate the auto-generated sections of `docs/AGENTS.md` and `docs/SKILLS.md`
 
 ## What this agent does
@@ -61,6 +63,12 @@ Whenever it creates/updates/deletes agents or skills, Agent Manager also:
 
 - Updates `tools/agentSkillsMap.json` **if (and only if) the file already exists**
 
+The mapping tracks optional knowledge base assignments per agent:
+
+- Field name: `knowledge-base`
+- Value: list of workspace-relative paths under `knowledge-base/`
+- Default: present and empty (`[]`) unless the user assigns documents
+
 Doc indexes are **repo-specific**:
 
 - It updates `docs/AGENTS.md` and `docs/SKILLS.md` only when operating in this exact repository.
@@ -82,6 +90,7 @@ When you ask to create a new agent, it will:
 2. Ensure requested skills exist under `.github/skills/<skill>/SKILL.md`
 3. If `tools/agentSkillsMap.json` exists, add/update the mapping entry
    - Unless you explicitly ask not to, it includes the skill `identify-self` by default for newly created agents
+  - It also keeps an explicit `knowledge-base: []` field unless you assign documents
 4. Keep the agent definition strict by default (minimum capabilities for the job)
 5. Regenerate `docs/AGENTS.md` and `docs/SKILLS.md` auto-generated blocks
 
@@ -91,6 +100,7 @@ When you ask to update an agent, it will:
 
 - Edit the relevant `.github/agents/<agent>.agent.md`
 - Update `tools/agentSkillsMap.json` if the agent’s skills change
+- Keep an explicit empty `knowledge-base` field unless you assign knowledge-base documents
 - Regenerate docs auto-generated blocks
 
 #### Delete agent
@@ -186,6 +196,7 @@ Agent Manager updates docs deterministically by replacing **only** the content b
 - Lists agents from `.github/agents/*.agent.md`
 - Uses agent front matter `name` and `description` when present
 - If (and only if) `tools/agentSkillsMap.json` exists and lists skills for an agent, includes a `Skills: ...` line
+- If (and only if) `tools/agentSkillsMap.json` exists and has a `knowledge-base` field for an agent, includes a `Knowledge base: ...` line
 
 ### `docs/SKILLS.md`
 

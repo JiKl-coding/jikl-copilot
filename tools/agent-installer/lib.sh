@@ -178,6 +178,43 @@ skills_for_agent() {
 	' "$mapping_file" | sed '/^$/d'
 }
 
+# Resolve knowledge-base paths for a single agent file.
+# Prints one path per line (workspace-relative, must be under knowledge-base/).
+knowledge_base_for_agent() {
+	local mapping_file="$1"
+	local agent_file="$2"
+	awk -v agent="$agent_file" '
+		BEGIN { inAgents=0; depth=0; inTarget=0; inKB=0 }
+		/"agents"[[:space:]]*:[[:space:]]*\{/ { inAgents=1; depth=1; next }
+		inAgents {
+			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:[[:space:]]*\{/, m)) {
+				inTarget = (m[1] == agent) ? 1 : 0
+				inKB = 0
+			}
+			if (inTarget && $0 ~ /"knowledge-base"[[:space:]]*:[[:space:]]*\[/) { inKB=1; next }
+			if (inTarget && inKB) {
+				if ($0 ~ /\]/) { inKB=0; next }
+				if (match($0, /"([^"]+)"/, p)) { print p[1] }
+			}
+
+			line=$0
+			opens=gsub(/\{/, "{", line)
+			closes=gsub(/\}/, "}", line)
+			depth += opens - closes
+			if (depth <= 0) { inAgents=0; exit }
+		}
+	' "$mapping_file" | sed '/^$/d'
+}
+
+# Validate a knowledge-base path (must start with knowledge-base/ and no traversal).
+validate_kb_path() {
+	local path="$1"
+	[[ "$path" == knowledge-base/* ]] || die "Invalid knowledge-base path (must start with 'knowledge-base/'): $path"
+	case "$path" in
+		*'..'*|*'//'*) die "Path traversal detected in knowledge-base path: $path";;
+	esac
+}
+
 # Prompt helpers
 prompt_yes_no() {
 	local prompt="$1"
@@ -275,16 +312,18 @@ copy_dir_safely() {
 }
 
 write_manifest() {
-	# Args: <manifestPath> <sourceUrl> <sourceRef> <sourceSha> <agentsFile> <skillsFile> <mode>
+	# Args: <manifestPath> <sourceUrl> <sourceRef> <sourceSha> <agentsFile> <skillsFile> <kbFile> <mode>
 	# agentsFile lines: destAgent\tsrcAgent[\tsha]
 	# skillsFile lines: destSkill\tsrcSkill[\tsha]
+	# kbFile lines: destPath\tsrcPath[\tsha]
 	local manifest="$1"
 	local url="$2"
 	local ref="$3"
 	local sha="$4"
 	local agents_list="$5"
 	local skills_list="$6"
-	local mode="$7"
+	local kb_list="$7"
+	local mode="$8"
 
 	mkdir -p "$(dirname "$manifest")"
 	local ts
@@ -304,7 +343,7 @@ write_manifest() {
 			print "  \"installed\": {";
 			print "    \"agents\": {";
 		}
-		FNR==NR {
+		FNR==NR && ARGIND==1 {
 			# agents_list: dest \t source [\t sha]
 			if (NF >= 2) {
 				dest=$1; src=$2; itemSha=(NF>=3?$3:sha);
@@ -313,12 +352,21 @@ write_manifest() {
 			}
 			next
 		}
-		{
+		FNR==NR && ARGIND==2 {
 			# skills_list: dest \t source [\t sha]
 			if (NF >= 2) {
 				dest=$1; src=$2; itemSha=(NF>=3?$3:sha);
 				skillsSrc[dest]=src;
 				skillsSha[dest]=itemSha;
+			}
+			next
+		}
+		{
+			# kb_list: dest \t source [\t sha]
+			if (NF >= 2) {
+				dest=$1; src=$2; itemSha=(NF>=3?$3:sha);
+				kbSrc[dest]=src;
+				kbSha[dest]=itemSha;
 			}
 		}
 		END {
@@ -338,11 +386,20 @@ write_manifest() {
 				first=0
 			}
 			if (first==1) print "";
+			print "    },";
+			# knowledge-base
+			print "    \"knowledge-base\": {";
+			first=1
+			for (p in kbSrc) {
+				printf "      %s\"%s\": { \"source\": \"%s\", \"sha\": \"%s\" }\n", (first?"":",\n"), p, kbSrc[p], kbSha[p];
+				first=0
+			}
+			if (first==1) print "";
 			print "    }";
 			print "  }";
 			print "}";
 		}
-	' "$agents_list" "$skills_list" >"$manifest"
+	' "$agents_list" "$skills_list" "$kb_list" >"$manifest"
 }
 
 read_manifest_field() {
@@ -410,6 +467,34 @@ manifest_list_skills() {
 		/"skills"[[:space:]]*:[[:space:]]*\{/ { inSkills=1; next }
 		inSkills && /^[[:space:]]*\}/ { inSkills=0 }
 		inSkills { if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:/, m)) print m[1] }
+	' "$manifest" | sed '/^$/d' | sort -u
+}
+
+manifest_dump_kb_tsv() {
+	# Args: <manifestPath>
+	# Output: destPath\tsourcePath\tsha
+	local manifest="$1"
+	awk '
+		BEGIN { inKB=0; key=""; src=""; sha="" }
+		/"knowledge-base"[[:space:]]*:[[:space:]]*\{/ { inKB=1; next }
+		inKB && /^[[:space:]]*\}/ { inKB=0 }
+		inKB {
+			if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:/, m)) { key=m[1]; src=""; sha="" }
+			if (key != "" && match($0, /"source"[[:space:]]*:[[:space:]]*"([^"]+)"/, s)) src=s[1]
+			if (key != "" && match($0, /"sha"[[:space:]]*:[[:space:]]*"([^"]+)"/, h)) sha=h[1]
+			if (key != "" && src != "") { printf "%s\t%s\t%s\n", key, src, sha; key=""; src=""; sha="" }
+		}
+	' "$manifest" | sed '/^$/d'
+}
+
+manifest_list_kb() {
+	# Args: <manifestPath>
+	local manifest="$1"
+	awk '
+		BEGIN { inKB=0 }
+		/"knowledge-base"[[:space:]]*:[[:space:]]*\{/ { inKB=1; next }
+		inKB && /^[[:space:]]*\}/ { inKB=0 }
+		inKB { if (match($0, /^[[:space:]]*"([^"]+)"[[:space:]]*:/, m)) print m[1] }
 	' "$manifest" | sed '/^$/d' | sort -u
 }
 

@@ -47,6 +47,7 @@ flowchart LR
 - 🤖 `.github/agents/` — VS Code project agents (discoverable)
 - 🧩 `.github/skills/` — VS Code agent skills (discoverable)
 - 🧾 `tools/agentSkillsMap.json` — mapping used to keep agent/skill docs in sync
+- 📚 `knowledge-base/` — knowledge base documents (assigned to agents via mapping; copied by installer)
 
 ## 🧭 Quick usage tips
 
@@ -64,6 +65,8 @@ flowchart LR
 ## 📦 Git-only agent installer (experimental)
 
 This repo includes a Git-only installer for importing selected Copilot project agents (and required skills) into other repositories.
+
+The installer also copies any required knowledge-base documents assigned to agents via the mapping. These are placed under `knowledge-base/` in the target repository.
 
 > **Note:** The Git-only agent installer was created using the spec-writter agent and the git-only-agent-installer agent.
 

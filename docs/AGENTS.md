@@ -60,40 +60,54 @@ This repo also includes a tooling mapping file (useful for future import tooling
 
 - `tools/agentSkillsMap.json` (agent file → list of skills)
 
+The mapping also tracks optional knowledge base document assignments per agent via the `knowledge-base` field (paths under `knowledge-base/`).
+
 This mapping is maintained only in this repo (the “agent catalog”) as a safety net for a future import tool.
 
 To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agentSkillsMap.json` and regenerate the auto-generated blocks in this doc and in `docs/SKILLS.md`.
 
 <!-- AGENTS:BEGIN -->
-(Auto-generated. Edit agent files under `.github/agents/` and mapping `tools/agentSkillsMap.json`.)
+(Auto-generated. Edit agent files under `.github/agents/` and mapping `tools/agentSkillsMap.json` (skills + knowledge-base).)
 
 ### Agent: Agent Manager
 
 - File: [.github/agents/agent-manager.agent.md](../.github/agents/agent-manager.agent.md)
 - Purpose: Maintains project agents/skills and keeps tools/agentSkillsMap.json + docs (AGENTS.md/SKILLS.md) in sync; stays strictly within agent-system scope unless explicitly asked.
 - Skills: `identify-self`
+- Knowledge base: (none)
 
 ### Agent: Documentation Writer
 
 - File: [.github/agents/documentation-writer.agent.md](../.github/agents/documentation-writer.agent.md)
 - Purpose: Writes documentation only (READMEs, guides, API docs, runbooks) from provided context/specs; does not refactor/implement code or run commands unless explicitly asked.
 - Skills: `identify-self`
+- Knowledge base: (none)
 
 ### Agent: Git-Only Agent Installer
 
 - File: [.github/agents/git-only-agent-installer.agent.md](../.github/agents/git-only-agent-installer.agent.md)
 - Purpose: Designs and implements Git-only shell scripts to install/update selected Copilot project agents and their required skills into other repositories, per the installer spec.
 - Skills: `identify-self`
+- Knowledge base: (none)
 
 ### Agent: Git Steward
 
 - File: [.github/agents/git-steward.agent.md](../.github/agents/git-steward.agent.md)
 - Purpose: Performs Git workflows safely (status, add/commit, sync, rebase, conflicts); Git-only scope and no code refactors/feature work unless explicitly asked.
 - Skills: `identify-self`, `git-sync-rebase`
+- Knowledge base: (none)
 
 ### Agent: Spec Writer v2
 
 - File: [.github/agents/spec-writer.agent.md](../.github/agents/spec-writer.agent.md)
 - Purpose: Writes clear, review-ready SDD specifications (single spec or spec pack); does not implement/refactor code unless explicitly asked.
 - Skills: `identify-self`, `requirements-extractor`, `ac-quality-check`, `risk-review`, `test-plan`, `rollout-migration`, `mcp-integration`
+- Knowledge base: (none)
+
+### Agent: testAgent
+
+- File: [.github/agents/testAgent.agent.md](../.github/agents/testAgent.agent.md)
+- Purpose: Minimal test agent for validating knowledge-base document assignment behavior; avoids repo changes unless explicitly asked.
+- Skills: `identify-self`
+- Knowledge base: `knowledge-base/testbase.md`
 <!-- AGENTS:END -->

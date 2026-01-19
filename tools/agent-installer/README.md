@@ -5,6 +5,8 @@
 
 This folder contains a Git-only installer for importing Copilot project agents and their required skills into another repository.
 
+The installer also copies any required knowledge-base documents assigned to agents via the mapping in `tools/agentSkillsMap.json`. These are placed under `knowledge-base/` in the target repository.
+
 Constraints:
 - Git + POSIX-ish shell only (Git Bash / WSL / macOS / Linux)
 - No Node.js, Python, `jq`, `npx`
@@ -29,10 +31,13 @@ Options:
 
 If a selected agent or skill already exists in the target repo, the installer will prompt you per item with options to overwrite, skip, or rename.
 
+If a required knowledge-base document already exists, the installer will prompt you per file with options to overwrite, skip, or write side-by-side as `.new`.
+
 ## What it writes
 
 - Agents: `.github/agents/*.agent.md`
 - Skills: `.github/skills/<skill>/`
+- Knowledge base documents: `knowledge-base/<path>`
 - Manifest: `.github/agent-installer/manifest.json`
 
 The manifest pins the source repo/ref and resolved SHA and tracks which agent files and skill folders were installed.

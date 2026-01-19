@@ -15,3 +15,4 @@
 These pages are intended as the human-friendly index. The discoverable VS Code definitions live under:
 - `.github/agents/`
 - `.github/skills/`
+- `knowledge-base/` (knowledge base documents assigned to agents via mapping)
