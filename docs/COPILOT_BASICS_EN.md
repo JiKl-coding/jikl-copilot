@@ -130,10 +130,22 @@ An agent is a mode where Copilot **executes a sequence of steps**: explores the 
 ### Background vs cloud vs “codex” agent (conceptually)
 Exact names vary by product/version, but commonly:
 - **Background agent**: longer-running multi-step task while you do other work.
-- **Cloud agent**: part of the work executes on remote infrastructure.
+- **Cloud agent**: part (or all) of the work executes on remote infrastructure.
 - **“Codex” / coding agent**: optimized for code edits + running build/test.
 
 Availability depends on your license/org setup.
+
+### What a “cloud agent” is good for (practically)
+Use a cloud agent when you want an assistant that can run reliably and scale outside your local VS Code session.
+
+Common use-cases:
+- **AI chatbots on a website**: product Q&A, onboarding, troubleshooting, guided flows.
+- **Chatbots in Teams/Slack**: internal helpdesk, policy/HR Q&A, release notes summaries, incident updates.
+- **Customer support automation**: draft replies, triage tickets, collect missing details, route to the right team.
+- **Knowledge base + enterprise search**: answer questions with citations from internal docs (often via connectors/MCP-like tooling).
+- **Workflow automation**: create tasks, update issues, trigger CI, summarize PRs — with audit logs and access control.
+
+Rule of thumb: prefer a cloud agent when the work needs shared availability, integrations (Teams/web), or consistent execution independent of a developer machine.
 
 ### How to create a custom agent that shows up in the UI (VS Code)
 

@@ -139,10 +139,22 @@ Agent je režim, kdy Copilot **vykonává sekvenci kroků**: prochází repozit�
 ### Background vs cloud vs „codex“ agent (konceptuálně)
 Konkrétní názvy se mohou lišit podle verze nástrojů, ale typicky:
 - **Background agent**: běží déle, řeší vícekrokový úkol; ty mezitím děláš něco jiného.
-- **Cloud agent**: část práce probíhá na vzdálené infrastruktuře (škálování, izolace, konzistence prostředí).
+- **Cloud agent**: část (nebo i celá) práce probíhá na vzdálené infrastruktuře (škálování, izolace, konzistence prostředí).
 - **Codex agent** (často se tím myslí „coding agent“): agent zaměřený na kódové změny + spouštění build/test.
 
 Pozn.: co přesně je dostupné (licence/enterprise) záleží na konfiguraci organizace.
+
+### Na co je „cloud agent“ prakticky dobrý
+Cloud agenta použij, když potřebuješ asistenta, který běží spolehlivě „mimo“ tvůj lokální VS Code a dá se škálovat a integrovat.
+
+Typické use-cases:
+- **AI chatboti na webu**: produktové Q&A, onboarding, řešení problémů, naváděné postupy.
+- **Chatboti v Teams/Slacku**: interní helpdesk, Q&A k pravidlům/HR, souhrny release notes, incident aktualizace.
+- **Automatizace podpory**: návrhy odpovědí, triage ticketů, sběr chybějících informací, směrování na správný tým.
+- **Vyhledávání ve znalostní bázi**: odpovídání z interních dokumentů (často přes konektory / MCP‑like integrace).
+- **Automatizace workflow**: zakládání úkolů, update issues, spouštění CI, shrnutí PR — ideálně s auditem a řízeným přístupem.
+
+Pravidlo: cloud agent dává smysl, když chceš sdílenou dostupnost, integrace (Teams/web) nebo konzistentní běh nezávislý na vývojářově počítači.
 
 ### Jak vytvořit vlastního agenta tak, aby byl vidět v UI (VS Code)
 
