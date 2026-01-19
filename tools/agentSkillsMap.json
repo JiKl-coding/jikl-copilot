@@ -49,7 +49,7 @@
         "identify-self"
       ],
       "knowledge-base": [
-        "knowledge-base/testbase.md"
+        "testbase.md"
       ]
     }
   }
