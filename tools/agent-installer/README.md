@@ -1,4 +1,7 @@
+
 # Git-only agent installer
+
+> **Note:** This script was created using the spec-writte agent and the git-only agent.
 
 This folder contains a Git-only installer for importing Copilot project agents and their required skills into another repository.
 
