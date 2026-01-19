@@ -65,11 +65,11 @@ flowchart LR
 
 This repo includes a Git-only installer for importing selected Copilot project agents (and required skills) into other repositories.
 
-> **Note:** The Git-only agent installer was created using the spec-writte agent and the git-only agent.
+> **Note:** The Git-only agent installer was created using the spec-writter agent and the git-only-agent-installer agent.
 
 - Spec: [docs/specs/2026-01-17--git-only-agent-installer.md](docs/specs/2026-01-17--git-only-agent-installer.md)
 - Usage: [tools/agent-installer/README.md](tools/agent-installer/README.md)
 
 ---
 
-_Created by documentation writer agent_
+_Created by documentation writter agent_
