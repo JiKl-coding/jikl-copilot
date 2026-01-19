@@ -103,11 +103,4 @@ To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agent
 - Purpose: Writes clear, review-ready SDD specifications (single spec or spec pack); does not implement/refactor code unless explicitly asked.
 - Skills: `identify-self`, `requirements-extractor`, `ac-quality-check`, `risk-review`, `test-plan`, `rollout-migration`, `mcp-integration`
 - Knowledge base: (none)
-
-### Agent: testAgent
-
-- File: [.github/agents/testAgent.agent.md](../.github/agents/testAgent.agent.md)
-- Purpose: Minimal test agent for validating knowledge-base document assignment behavior; avoids repo changes unless explicitly asked.
-- Skills: `identify-self`
-- Knowledge base: `knowledge-base/testbase.md`
 <!-- AGENTS:END -->

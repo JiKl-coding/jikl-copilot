@@ -89,12 +89,20 @@ When user asks to delete an agent:
 Required process:
 
 1) If `tools/agentSkillsMap.json` exists, read the agent’s mapped skills list.
+   - Also read the agent’s mapped `knowledge-base` list (if present).
 2) For each mapped skill, count how many agents use it (scan all agents in `tools/agentSkillsMap.json`).
 3) Delete the agent file `.github/agents/<agent>.agent.md`.
+   - After deleting, you MUST verify the file is actually gone (e.g., workspace search for the path).
+   - If it still exists, retry deletion and verify again. Do not proceed while the file remains.
 4) Remove the agent mapping entry from `tools/agentSkillsMap.json`.
 5) For each mapped skill that was used by **only that agent** (usage count = 1), delete `.github/skills/<skill>/`.
   - Do NOT delete skills that are used by other agents (usage count >= 2).
-6) If the repo identity check passes, regenerate the auto-generated blocks in `docs/AGENTS.md` and `docs/SKILLS.md`.
+6) For each knowledge-base document that was assigned to the agent:
+   - Count how many agents reference that exact knowledge-base path in `tools/agentSkillsMap.json`.
+   - If usage count >= 2, do NOT ask and do NOT delete anything.
+   - If usage count == 1 (only this agent), ask the user whether to delete the knowledge-base file under `knowledge-base/`.
+     - Only delete the knowledge-base file if the user explicitly confirms.
+7) If the repo identity check passes, regenerate the auto-generated blocks in `docs/AGENTS.md` and `docs/SKILLS.md`.
 
 ## Create skill
 

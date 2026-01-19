@@ -42,15 +42,6 @@
         "identify-self"
       ],
       "knowledge-base": []
-    },
-    "testAgent.agent.md": {
-      "name": "testAgent",
-      "skills": [
-        "identify-self"
-      ],
-      "knowledge-base": [
-        "knowledge-base/testbase.md"
-      ]
     }
   }
 }

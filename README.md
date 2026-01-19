@@ -24,7 +24,7 @@ This repository is for experimenting with Copilot **hands-on**:
 ## 🚀 Start here
 
 - 📚 Docs index: [docs/README.md](docs/README.md)
-- 🇬🇧 Copilot basics: [docs/COPILOT_BASICS_EN.md](docs/COPILOT_BASICS_EN.md)
+- 🇺🇸 Copilot basics: [docs/COPILOT_BASICS_EN.md](docs/COPILOT_BASICS_EN.md)
 - 🇨🇿 Základy Copilota: [docs/COPILOT_BASICS_CZ.md](docs/COPILOT_BASICS_CZ.md)
 - 🤖 Agents overview: [docs/AGENTS.md](docs/AGENTS.md)
 - 🧩 Skills overview: [docs/SKILLS.md](docs/SKILLS.md)
@@ -37,6 +37,7 @@ flowchart LR
 	B --> C["Plan"]
 	C --> D["Agents"]
 	D --> E["Skills"]
+	D --> H["Knowledge Base"]
 	D --> F["Execution (edits / commands)"]
 	F --> G["Verification (tests / checks)"]
 ```
@@ -64,14 +65,13 @@ flowchart LR
 
 ## 📦 Git-only agent installer (experimental)
 
-This repo includes a Git-only installer for importing selected Copilot project agents (and required skills) into other repositories.
-
-The installer also copies any required knowledge-base documents assigned to agents via the mapping. These are placed under `knowledge-base/` in the target repository.
+This repo includes a Git-only installer for importing selected Copilot project agents (and required skills + knowledge base) into other repositories.
 
 > **Note:** The Git-only agent installer was created using the spec-writter agent and the git-only-agent-installer agent.
 
-- Spec: [docs/specs/2026-01-17--git-only-agent-installer.md](docs/specs/2026-01-17--git-only-agent-installer.md)
-- Usage: [tools/agent-installer/README.md](tools/agent-installer/README.md)
+📄 Spec: [docs/specs/2026-01-17--git-only-agent-installer.md](docs/specs/2026-01-17--git-only-agent-installer.md)
+
+🛠️ Usage: [tools/agent-installer/README.md](tools/agent-installer/README.md)
 
 ---
 
