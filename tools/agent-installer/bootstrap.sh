@@ -10,4 +10,6 @@ trap 'rm -rf "$tmp_dir"' EXIT
 
 git clone --depth 1 --filter=blob:none --sparse https://github.com/JiKl-coding/jikl-copilot.git "$tmp_dir/jikl-copilot"
 git -C "$tmp_dir/jikl-copilot" sparse-checkout set tools/agent-installer
-bash "$tmp_dir/jikl-copilot/tools/agent-installer/install.sh" "$@"
+
+# Redirect stdin from terminal so interactive prompts work when piped from curl
+bash "$tmp_dir/jikl-copilot/tools/agent-installer/install.sh" "$@" < /dev/tty
