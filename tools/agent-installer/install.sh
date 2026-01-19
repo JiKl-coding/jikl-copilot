@@ -9,12 +9,14 @@ show_help() {
 	say "Git-Only Agent Installer — Install"
 	say ""
 	say "Installs selected Copilot project agents and required skills into the current repo."
+	say "Also installs any knowledge-base documents assigned to selected agents."
 	say ""
 	usage_common
 	say ""
 	say "Notes:"
 	say "  - Agents install as files under .github/agents/*.agent.md"
 	say "  - Skills install as directories under .github/skills/<skill>/"
+	say "  - Knowledge base documents install under knowledge-base/<path>"
 }
 
 main() {
@@ -282,10 +284,12 @@ main() {
 		while IFS= read -r kbpath; do
 			[[ -n "$kbpath" ]] || continue
 			local srcf="$src_repo/$kbpath"
-			[[ -f "$srcf" ]] || {
+			if [[ ! -f "$srcf" ]]; then
 				warn "Missing source knowledge-base document: $kbpath (skipping)"
+				warn "  Expected at: $srcf"
+				warn "  Checked in sparse checkout - file may not have been fetched"
 				continue
-			}
+			fi
 			local destf="$target_root/$kbpath"
 
 			if [[ -e "$destf" ]]; then
