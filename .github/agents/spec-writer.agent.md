@@ -74,12 +74,12 @@ If it’s a new project:
 If you are asked to write specs into the repository:
 
 ## Single spec mode
-- Create `docs/specs/` (if it doesn’t exist)
+- Create `specs/` at the repo root (if it doesn’t exist), unless explicitly told otherwise
 - File name: `YYYY-MM-DD--short-slug.md`
 - Put date + version at the top
 
 ## Spec pack mode
-- Create folder: `docs/specs/YYYY-MM-DD--short-slug/`
+- Create folder: `specs/YYYY-MM-DD--short-slug/` at the repo root, unless explicitly told otherwise
 - Create these files:
 	- `README.md` (human-friendly overview: what/why, quick status, links to the other files)
 	- `north-star.md` (goal, non-goals, constraints, success metrics)
