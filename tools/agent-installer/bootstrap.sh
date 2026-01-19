@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Git-only agent installer bootstrap
-# Usage: curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash
-# Or with options: curl -fsSL ... | bash -s -- --dry-run --ref main
+# Usage: bash <(curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh)
+# Or with options: bash <(curl -fsSL ...) --dry-run --ref main
 
 set -euo pipefail
 

@@ -16,26 +16,16 @@ Constraints:
 
 From the root of your *target* repo:
 
-### Simple (one command)
+### Simple (recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash
-```
-
-**Note:** If interactive prompts don't work (Git Bash on Windows), use the two-step method below.
-
-### Two-step (if one-command fails)
-
-```bash
-# Download and run
-curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh -o install-agents.sh
-bash install-agents.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh)
 ```
 
 With options:
 
 ```bash
-bash install-agents.sh --dry-run
+bash <(curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh) --dry-run
 ```
 
 ### Manual (alternative)
@@ -58,13 +48,13 @@ tmp_dir="$(mktemp -d)" && \
 
 ```bash
 # Preview what would be installed
-curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash -s -- --dry-run
+bash <(curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh) --dry-run
 
 # Install from a specific tag
-curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash -s -- --ref v1.0.0
+bash <(curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh) --ref v1.0.0
 
 # Use a corporate mirror
-curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash -s -- --source https://github.internal.corp/mirrors/jikl-copilot.git
+bash <(curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh) --source https://github.internal.corp/mirrors/jikl-copilot.git
 ```
 
 ## Conflict handling
