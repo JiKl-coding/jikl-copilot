@@ -16,16 +16,26 @@ Constraints:
 
 From the root of your *target* repo:
 
-### Simple (recommended)
+### Simple (one command)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash
 ```
 
+**Note:** If interactive prompts don't work (Git Bash on Windows), use the two-step method below.
+
+### Two-step (if one-command fails)
+
+```bash
+# Download and run
+curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh -o install-agents.sh
+bash install-agents.sh
+```
+
 With options:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/JiKl-coding/jikl-copilot/main/tools/agent-installer/bootstrap.sh | bash -s -- --dry-run
+bash install-agents.sh --dry-run
 ```
 
 ### Manual (alternative)
