@@ -11,7 +11,7 @@ Related docs:
 ## Spec Writer v2
 
 - File: [.github/agents/spec-writer.agent.md](../.github/agents/spec-writer.agent.md)
-- Purpose: produce clear, review-ready **Spec-Driven Development (SDD)** specifications.
+- Purpose: produce clear, review-ready **Spec-Driven Development (SDD)** specifications (including spec packs with cross-linked docs).
 - Default output: a single Markdown spec (Goal / Non-goals / AC / Edge cases / Risks / Test plan) + a short implementation plan.
 - It does **not** implement code unless you explicitly ask for implementation.
 
@@ -100,7 +100,7 @@ To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agent
 ### Agent: Spec Writer v2
 
 - File: [.github/agents/spec-writer.agent.md](../.github/agents/spec-writer.agent.md)
-- Purpose: Writes clear, review-ready SDD specifications (single spec or spec pack); does not implement/refactor code unless explicitly asked.
+- Purpose: Writes clear, review-ready SDD specifications (single spec or spec pack with auto cross-links); does not implement/refactor code unless explicitly asked.
 - Skills: `identify-self`, `requirements-extractor`, `ac-quality-check`, `risk-review`, `test-plan`, `rollout-migration`, `mcp-integration`
 - Knowledge base: (none)
 <!-- AGENTS:END -->
