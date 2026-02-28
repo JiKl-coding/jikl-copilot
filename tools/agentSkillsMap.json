@@ -1,6 +1,17 @@
 {
   "version": 1,
   "agents": {
+    "spec-implementation.agent.md": {
+      "name": "Spec Implementer",
+      "skills": [
+        "identify-self",
+        "requirements-extractor",
+        "risk-review",
+        "test-plan",
+        "git-sync-rebase"
+      ],
+      "knowledge-base": []
+    },
     "spec-writer.agent.md": {
       "name": "Spec Writer v2",
       "skills": [

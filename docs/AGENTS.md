@@ -97,6 +97,13 @@ To keep mapping + docs in sync, ask the **Agent Manager** to update `tools/agent
 - Skills: `identify-self`, `git-sync-rebase`
 - Knowledge base: (none)
 
+### Agent: Spec Implementer
+
+- File: [.github/agents/spec-implementation.agent.md](../.github/agents/spec-implementation.agent.md)
+- Purpose: Implements approved specs/spec-packs as the sole source of truth; refuses ad-hoc implementation without a provided spec/spec-pack; asks targeted clarification questions when requirements are unclear.
+- Skills: `identify-self`, `requirements-extractor`, `risk-review`, `test-plan`, `git-sync-rebase`
+- Knowledge base: (none)
+
 ### Agent: Spec Writer v2
 
 - File: [.github/agents/spec-writer.agent.md](../.github/agents/spec-writer.agent.md)
